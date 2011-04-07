@@ -1,0 +1,1 @@
+<?php chdir('../'); require 'bootstrap.php'; ?>
