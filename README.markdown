@@ -14,18 +14,20 @@ Working with a small amount of simple code is great if you not only want to use 
 
 ## A Quick Example
 Just to ever so slightly scratch the surface, here's a very simple example.
+
     require 'bootstrap.php';
-    rc::route()->get('/example', array(nc::exampleController(), 'index'));
+    rc::route()->get('/example', array(nc::exampleController(), 'methodName'));
     rc::route()->get('/hello/:name', function($name) {
         echo 'Hello '.$name;
     });
     rc::dispatch();
 
-**N**ew **C**lass `nc::className` instantiates a new class and returns its instance.  
+**N**ew **C**lass `nc::className` instantiates a new class and returns its instance.
 **R**egistered **C**lass `rc::className` will instantiate a class, store it in the registry and return its instance or simply return a previous instantiated class.
 
 ## Directory Structure
 The directory structure is more of a nod towards a way you might structure your application. However you can customise it however you like, just make sure to a few changes to paths.php and you can create whatever structure you desire.
+
     .
     ├── app
     │   ├── controllers

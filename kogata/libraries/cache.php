@@ -2,9 +2,9 @@
 /**
  * Cache Library
  * 
- * A simple PHP Cache
+ * Simple generic cache
  *
- * @package Phurb <http://phurb.com>
+ * @package Kogata <https://github.com/ChrisKempson/Kogata>
  * @author Chris Kempson <http://chriskempson.com>
  */
 class Cache {

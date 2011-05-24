@@ -2,7 +2,7 @@
 /**
  * Request Library
  * 
- * Simplifies the interaction with browser request data
+ * Simplifies interaction with browser request data
  *
  * @package Kogata <https://github.com/ChrisKempson/Kogata>
  * @author Chris Kempson <http://chriskempson.com>

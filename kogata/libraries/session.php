@@ -2,7 +2,7 @@
 /**
  * Session Library
  * 
- * A wrapper around PHP's session functions
+ * A wrapper around PHP's session functions to aid simplicity of use
  *
  * @package Kogata <https://github.com/ChrisKempson/Kogata>
  * @author Chris Kempson <http://chriskempson.com>

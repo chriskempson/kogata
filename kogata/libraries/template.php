@@ -2,7 +2,7 @@
 /**
  * Template Library
  *
- * Very simple templating class
+ * Simple but functional templating class
  * 
  * @package Kogata <https://github.com/ChrisKempson/Kogata>
  * @author Chris Kempson <http://chriskempson.com>
