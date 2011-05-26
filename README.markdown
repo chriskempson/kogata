@@ -1,5 +1,7 @@
-# Kogata PHP 5 Framework
-Working with a small amount of simple code is great if you not only want to use a framework but know it inside out! Great care has been taken to make Kogata as small and as simple as possible. Complex, code hungry solutions are banished meaning you can acquire a deep understanding of Kogata in practically no time at all.
+# Kogata PHP 5 Gluing Framework
+Huge monolithic frameworks are great but there are also loads of great standalone components out there. Rather than be forced to use whatever bespoke code your framework uses, why not just use what you want to use? Just glue all your favourite components together, in effect creating your own custom framework that works exactly how you want it to!
+
+This is the purpose of Kogata, it's what I call a "Gluing Framework". A framework that does little more than act a facilitator for joining up your various favourite components. Great care has been taken to make Kogata as small and as simple as possible so you can grok its code in next to no time.
 
 ## Features Overview
 * Amazingly Lightweight
@@ -9,8 +11,9 @@ Working with a small amount of simple code is great if you not only want to use 
 * PHP5 Class auto-loading
 * Easily share instantiated classes anywhere in your application
 * Extremely simple templating system (or use your own e.g. Smarty)
-* Written for PHP 5.2+
 * Easy to get to grips with and customise to your liking
+* Extendable with your own or third-party classes and components
+* Written for PHP 5.2+
 
 ## A Quick Example
 Just to ever so slightly scratch the surface, here's a very simple example.
