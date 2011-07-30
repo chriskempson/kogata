@@ -35,7 +35,7 @@ function instantiate($class, $params) {
 /**
  * New Class
  *
- * Returns an instantiated class
+ * Returns an new instantiated class
  */
 class nc {
 	public static function __callStatic($class, $params) {
@@ -44,11 +44,11 @@ class nc {
 }
 
 /**
- * Registered Class
+ * Stored Class
  *
- * Retrieves or saves a class in the registry
+ * Stores or retrieves a class in the registry
  */
-class rc {
+class sc {
 	public static function __callStatic($class, $params) {
 		if (rg::get($class)) return rg::get($class);
 		else return rg::set($class, instantiate($class, $params));
@@ -56,11 +56,11 @@ class rc {
 }
 
 /**
- * Clear Class
+ * Delete Class
  *
- * Clears a registered class from the registry
+ * Deletes a class previous stored in the registry
  */
-class cc {
+class dc {
 	public static function __callStatic($class, $params) {
 		return rg::set($class, null);
 	}

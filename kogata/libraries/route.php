@@ -25,7 +25,7 @@ class Route {
 		$this->routes[strtoupper($method)][] = array(
 			'pattern' => $pattern,
 			'callable' => $callable,
-			'resource' => rc::request()->resource
+			'resource' => sc::request()->resource
 		);
 	}
 	
@@ -81,3 +81,4 @@ class Route {
 		$this->map('DELETE', $pattern, $callable);
 	}
 }
+?>

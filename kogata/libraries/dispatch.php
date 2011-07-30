@@ -16,9 +16,9 @@ class Dispatch {
 	 * Execute any defined routes
 	 */
 	function __construct() {
-		$routes   = rc::route()->routes;
-		$method   = rc::request()->method;
-		$resource = rc::request()->resource;
+		$routes   = sc::route()->routes;
+		$method   = sc::request()->method;
+		$resource = sc::request()->resource;
 
 		// Check each route
 		foreach ($routes[$method] as $route) {
@@ -57,6 +57,11 @@ class Dispatch {
 		}
 		
 		if (is_callable($callable)) {
+			
+			// Automatically call loader on callable strings
+			if (is_array($callable) && is_string($callable[0])) 
+				$callable[0] = nc::$callable[0]();
+			
 			call_user_func_array(
 				$callable,
 				$params

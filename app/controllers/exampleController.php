@@ -17,8 +17,8 @@ class ExampleController {
 	 * @return void
 	 */
 	public function index($name = false) {
-		$data = rc::exampleModel()->get();
-		rc::template('example', $data);
+		$data = sc::exampleModel()->get();
+		sc::template('example', $data);
 	}
 	
 	public function hello($name = false) {
