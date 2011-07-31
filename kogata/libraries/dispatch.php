@@ -43,25 +43,30 @@ class Dispatch {
 	/**
 	 * Call
 	 * 
-	 * Checks to see if requested resource matches the supplied pattern
+	 * Calls a function or class method
 	 *
-	 * @param string $patten Resource pattern to match e.g. /users/:name
+	 * @param string $patten Resource pattern to match e.g. /users/$name
 	 * @param mixed $callable String or array for call_user_func_array()
 	 * @param array $params Response from $this->params()
 	 */	
 	function call($pattern, $callable, $params) {
-		if (isset($params[':action']) && strstr($pattern, ':action')) {
-			if (is_callable(array($callable[0], $params[':action']))) 
-				$callable[1] = $params[':action'];
-				unset($params[':action']);
+
+		if (isset($params['$action']) && strstr($pattern, '$action')) {
+			if (is_callable(array($callable[0], $params['$action']))) 
+				$callable[1] = $params['$action'];
+				unset($params['$action']);
 		}
 		
 		if (is_callable($callable)) {
 			
-			// Automatically call loader on callable strings
+			// Call class loader on strings
 			if (is_array($callable) && is_string($callable[0])) 
 				$callable[0] = nc::$callable[0]();
+				
+			// Store the route that has been dispatched
+			define('dispatched_route', $this->strip($pattern));	
 			
+			// Call the user function
 			call_user_func_array(
 				$callable,
 				$params
@@ -74,7 +79,7 @@ class Dispatch {
 	 * 
 	 * Checks to see if requested resource matches the supplied pattern
 	 *
-	 * @param string $pattern Resource pattern to match e.g. /users/:name
+	 * @param string $pattern Resource pattern to match e.g. /users/$name
 	 * @param string $resource Requested resource
 	 * @return boolean
 	 */
@@ -87,15 +92,17 @@ class Dispatch {
 		else $length = count($resArray);
  
 		for($i = 1; $i < $length; $i++) {
-			// Match /
+			
+			// Match "/"
 			if (isset($patArray[$i]) && !$patArray[$i]
 				&& (isset($resArray[$i]) && !$resArray[$i])) return true;
 
+			// Check if both array elements exist
 			if (!isset($patArray[$i]) || !$patArray[$i]) return false;
-			
 			if (!isset($resArray[$i]) || !$resArray[$i]) return false;
-			
-			if (!strstr($patArray[$i], ':') 
+
+			// Check for non-variables
+			if (!strstr($patArray[$i], '$') 
 				&& $patArray[$i] != $resArray[$i]) return false;
 		}
 
@@ -105,10 +112,10 @@ class Dispatch {
 	/**
 	 * Params
 	 * 
-	 * Strips parameters from a resource based on the pattern. For example
-	 * grabs $id and $name from /users/:id/:name
+	 * Returns parameters from a resource based on the pattern. For example
+	 * grabs $id and $name from "/users/$id/$name"
 	 *
-	 * @param string $pattern Resource pattern e.g. /users/:name
+	 * @param string $pattern Resource pattern e.g. /users/$name
 	 * @param string $resource Requested resource
 	 * @return array
 	 */
@@ -118,12 +125,34 @@ class Dispatch {
 		$params   = array();
 	
 		for($i = 1; $i < count($resArray); $i++) {
-			if (isset($patArray[$i]) && strstr($patArray[$i], ':')) {
+			if (isset($patArray[$i]) && strstr($patArray[$i], '$')) {
 				$params[$patArray[$i]] = $resArray[$i];
 			}
 		}
 		
 		return $params;
+	}
+	
+	/**
+	 * Strip
+	 * 
+	 * Removes parameters from a resource based on the pattern. For example
+	 * "/users/$id/$name" becomes "/users"
+	 *
+	 * @param string $pattern Resource pattern e.g. /users/$name
+	 * @return array
+	 */
+	public function strip($pattern) {
+		$patArray = explode('/', $pattern);
+		$array   = null;
+	
+		foreach ($patArray as $element) {
+			if (!strstr($element, '$')) {
+				$array[] = $element;
+			}
+		}
+
+		return implode('/', $array);
 	}
 
 }

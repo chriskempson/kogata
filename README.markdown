@@ -3,7 +3,7 @@ Huge monolithic frameworks are great but there are also loads of great standalon
 
 This is the purpose of Kogata, it's what I'm calling a "Gluing Framework". A framework that does little more than act a facilitator for joining up your various favourite components and give you a little help accessing them via URLs. Great care has been taken to make Kogata as small and as simple as possible so you can fully grok its code in next to no time and really make it your own.
 
-The word "kogata" means "small size" in Japanese. Kogata's code is around 350 SLOC and measures just 8 KB!
+The word "kogata" means "small size" in Japanese. Kogata is around 350 SLOC and measures just 8 KB!
 
 ## Features Overview
 * Amazingly Lightweight
@@ -22,7 +22,7 @@ Just to ever so slightly scratch the surface, here's a very simple example.
 
     require 'bootstrap.php';
     sc::route()->get('/example', array(nc::exampleController(), 'methodName'));
-    sc::route()->get('/hello/:name', function($name) {
+    sc::route()->get('/hello/$name', function($name) {
         echo 'Hello '.$name;
     });
     sc::dispatch();

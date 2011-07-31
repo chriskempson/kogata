@@ -8,7 +8,7 @@ sc::route()->get('/', function() {
 
 // Example
 sc::route()->get('/example', array(nc::ExampleController(), 'index'));
-sc::route()->get('/example/:action/:name', array(nc::ExampleController(), null));
+sc::route()->get('/example/$action/$name', array(nc::ExampleController(), null));
 
 // Default route
 sc::route()->get(null, function() {

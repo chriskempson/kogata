@@ -11,6 +11,8 @@ class Request {
 
 	public $method;
 	public $resource;
+	public $resource_array;
+	public $referer;
 	private $get;
 	private $post;
 	private $put;
@@ -26,6 +28,9 @@ class Request {
 		$this->method = $_SERVER['REQUEST_METHOD'];
 		$this->resource = isset($_SERVER['PATH_INFO']) 
 			? $_SERVER['PATH_INFO'] : '/';
+		$this->resource_array = explode('/', $this->resource);			
+		$this->referer = isset($_SERVER['HTTP_REFERER']) 
+			? $_SERVER['HTTP_REFERER'] : null;
 		$this->get = $_GET;
 		$this->post = $_POST;
 		$this->put = file_get_contents("php://input");
