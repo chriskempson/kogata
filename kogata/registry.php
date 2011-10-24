@@ -6,6 +6,7 @@
  *
  * @package Kogata <https://github.com/ChrisKempson/Kogata>
  * @author Chris Kempson <http://chriskempson.com>
+ * @link https://github.com/ChrisKempson/Kogata/wiki/Registry
  */
 class rg {
 	private static $instance;

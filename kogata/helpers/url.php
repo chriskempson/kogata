@@ -2,10 +2,19 @@
 /**
  * URL Helper
  * 
- * Builds URL based upon currently dispatched route
+ * Provides functions to aid in the creation of URL's and hyperlinks
  *
- * @param string $format http://php.net/manual/en/function.date.php
- * @param string $datetime Existing datetime
+ * @package Kogata <https://github.com/ChrisKempson/Kogata>
+ * @author Chris Kempson <http://chriskempson.com>
+ * @link https://github.com/ChrisKempson/Kogata/wiki/Url
+ */
+
+/**
+ * URL Function
+ * 
+ * Builds URLs based upon currently dispatched route
+ *
+ * @param string $link A URL
  * @return string
  */
 function url($link = null) {
@@ -23,7 +32,16 @@ function url($link = null) {
 		return $link;
 }
 
-function a($name = '', $link = null) {
+/**
+ * Hyperlink Function
+ * 
+ * Constructs a hyperlink via the url() function
+ *
+ * @param string $text The hyperlink's link text
+ * @param string $link A URL
+ * @return string
+ */
+function a($text = '', $link = null) {
 	
 	return '<a href="'.url($link).'">'.$name.'</a>';
 }

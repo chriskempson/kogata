@@ -1,5 +1,15 @@
 <?php
 /**
+ * Date Helper
+ * 
+ * Provides a function to help deal with datetimes
+ *
+ * @package Kogata <https://github.com/ChrisKempson/Kogata>
+ * @author Chris Kempson <http://chriskempson.com>
+ * @link https://github.com/ChrisKempson/Kogata/wiki/Date
+ */
+
+/**
  * Datetime
  * 
  * Similar to PHP's date function but with the datetime format

@@ -2,10 +2,12 @@
 /**
  * Session Library
  * 
- * A wrapper around PHP's session functions to aid simplicity of use
+ * The session library provides a wrapper around PHP's session functions to 
+ * provide an object oriented method of interaction. Also adds a useful session variable flashing method.
  *
  * @package Kogata <https://github.com/ChrisKempson/Kogata>
  * @author Chris Kempson <http://chriskempson.com>
+ * @link https://github.com/ChrisKempson/Kogata/wiki/Session
  */
 class Session {
 	
@@ -28,7 +30,7 @@ class Session {
 	 * @param string $value Optional Value
 	 * @return void
 	 */
-	function set($var, $value = false) { 
+	function set($var, $value = null) { 
 		if (is_array($var)) {
 			foreach ($var as $key => $value) 
 				$this->session[$key] = $value;
@@ -42,7 +44,7 @@ class Session {
 	 * @param string $key 
 	 * @return variable
 	 */
-	function get($key = false) { 
+	function get($key = null) { 
 		if ($key) {
 			if(isset($this->session[$key])) return $this->session[$key];
 			else return false;
@@ -58,7 +60,8 @@ class Session {
 	 * @param string $key 
 	 * @return void
 	 */	
-	function flash($key = false) { 
+	function flash($key = null) {
+		if (!$key) return false;
 		$variable = $this->get($key);
 		$this->set($key);
 		return $variable;
